@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<style> 
+</style>
+<body>
+    <div class="Text"></div>
+
+    <script>
+        function Task3()
+        {
+            function HTML_List(mass)
+            {
+                let element = document.createElement("h")
+
+                for (let i = 0; i < mass.length; i++)
+                {
+                    element.appendChild(document.createTextNode("[" + mass[i] + "], "))
+                }
+                return element
+            }
+
+            let mass = []
+
+            while (true)
+            {
+                let str = prompt("Введите текст")
+                if (str === "")
+                    break;
+                mass.push(str)
+            }
+
+            document.querySelector("div.Text").appendChild(HTML_List(mass));
+        }
+        Task3();
+    </script>
+</body>
+</html>

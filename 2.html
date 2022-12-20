@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>    
+<head>
+</head>
+<style>
+    @keyframes moving
+    {
+        0%
+        { left: var(--oldposx); top: var(--oldposy); }
+        100%
+        { left: var(--posx); top: var(--posy); }
+    }
+    .round
+    {
+        animation: moving infinite 1s linear;
+        border-radius: 100%;
+        min-height: 30px;
+        min-width: 30px;
+        position: fixed;
+    }
+
+    :root
+    {
+        --oldposx: 0px;
+        --oldposy: 0px;
+        --posx: 0px;
+        --posy: 0px;
+    }
+</style>
+<body>    
+    <div class="round" style="background-color: #6023c2;"></div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        function getRandomInt(min, max)
+        {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        
+        function Task2()
+        {
+            let x = getRandomInt(0, window.window.innerWidth)
+            let y = getRandomInt(0, window.window.innerHeight)
+            const root = document.querySelector(':root')
+            let posx = window.getComputedStyle(document.body).getPropertyValue('--posx')
+            let posy = window.getComputedStyle(document.body).getPropertyValue('--posy')
+            const setVariables = vars => Object.entries(vars).forEach(v => root.style.setProperty(v[0], v[1]));
+            const myVariables =
+            {
+                '--oldposx': posx,
+                '--oldposy': posy,
+                '--posx': x + 'px',
+                '--posy': y + 'px',
+            };
+            setVariables(myVariables);
+        };
+        window.setInterval(Task2, 1000)
+    </script>
+</body>
+</html>

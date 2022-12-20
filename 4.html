@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+<style>
+    .task
+    {
+        width: 205px;
+        text-align: center;
+        font-size: 16px;
+        padding: 3px;
+        border-radius: 15px;
+    }
+    .color1{ background-color: rgb(133, 72, 133); }
+    .color2{ background-color: rgb(60, 245, 106); }
+    .color3{ background-color: rgb(194, 98, 98); }
+    .color4{ background-color: rgb(230, 143, 29); }
+    .row
+    {
+        display: flex;
+        margin: 2px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .text
+    {
+        font-size: 15px;
+        padding: 3%;
+        margin: 1%;
+    }
+    img
+    {
+        border-radius: 15px;
+        width: 200px;
+        height: 300px;
+    }
+    .post
+    {
+        margin: 5px;
+    }
+</style>
+
+<body>
+    <div class="row Text"></div>
+
+    <script>
+        function getRandomInt(min, max)
+        {
+        return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function Task4()
+        {
+            let linksPeakyBlinders =    //Острые козырьки
+            [
+                "https://avatars.mds.yandex.net/i?id=10881703c51cf4a3486b6892db99c94a7dfd41f8-8181844-images-thumbs&n=13",
+                "https://avatars.mds.yandex.net/i?id=0f9abddf855bd4354b882399bbf82db831139ace-7547473-images-thumbs&n=13",
+                "https://avatars.mds.yandex.net/i?id=68e71f63a4c50eb0675a429fafe3f9824ed305d2-5848264-images-thumbs&n=13",
+                "https://avatars.mds.yandex.net/i?id=0a371ab5645c468344ffd92de40549d9af9f4178-8264494-images-thumbs&n=13",
+            ]
+            let linksNaruto =   //Наруто
+            [
+                "https://you-anime.ru/anime-images/characters/character_62.jpg?1648220586",
+                "https://you-anime.ru/anime-images/characters/character_109.jpg?1648847555",
+                "https://you-anime.ru/anime-images/characters/character_119.jpg?1648220253",
+                "https://you-anime.ru/anime-images/characters/character_145.jpg?1648847344",
+            ]
+            let linksWednesday =    //Уэнсдей
+            [
+                "https://menina.ru/wp-content/uploads/2022/12/jenna-ortega.jpg",
+                "https://menina.ru/wp-content/uploads/2022/12/catherine-zeta-jones.jpg",
+                "https://menina.ru/wp-content/uploads/2022/12/emma-myers.jpg",
+                "https://menina.ru/wp-content/uploads/2022/12/hunter-doohan.jpg",
+            ]
+            let texts = //текст
+            [
+                "Случайное предложение 1.",
+                "Случайное предложение 2.",
+                "Случайное предложение 3.",
+                "Случайное предложение 4.",
+            ]
+            let colors = //бэкграунд цвет
+            [
+                "color1",
+                "color2",
+                "color3",
+                "color4",
+            ]
+
+            choice = prompt("1) Острые козырьки\n2) Наруто\n3) Уэнсдей") //выбор фильма
+            console.log(choice)
+
+            let K
+            let Kpr
+
+            do
+            {
+                K = prompt("Введите количество постов")
+            } while (K != parseInt(K) || K >= 4 || K < 0)
+
+            do
+            {
+                Kpr = prompt("Введите количество предложений")
+            } while (Kpr != parseInt(Kpr) || Kpr >= texts.length+1 || Kpr < 0)
+
+            function GenerateText() //генерация текста в посте
+            {
+                let text_post = document.createElement("h3")
+                text_post.className = "text"
+                let node = document.createTextNode(texts[getRandomInt(0, texts.length)])
+                text_post.appendChild(node)
+                return text_post
+            }
+
+            function GeneratePost() //генерация самого поста
+            {
+                let post = document.createElement("div")
+                let img = document.createElement("img")
+                
+
+                // switch(choice)
+                // {
+                //     case 1:
+                //     {
+                //         img.src = linksPeakyBlinders[getRandomInt(0, linksPeakyBlinders.length)]
+                //         break;
+                //     }
+                //     case 2:
+                //     {
+                //         img.src = linksNaruto[getRandomInt(0, linksNaruto.length)]
+                //         break;
+                //     }
+                //     case 3:
+                //     {
+                //         img.src = linksWednesday[getRandomInt(0, linksWednesday.length)]
+                //         break;
+                //     }
+                // }
+
+                if(choice == 1)
+                {
+                    img.src = linksPeakyBlinders[getRandomInt(0, linksPeakyBlinders.length)]
+                }
+                if(choice == 2)
+                {
+                    img.src = linksNaruto[getRandomInt(0, linksNaruto.length)]
+                }
+                if(choice == 3)
+                {
+                    img.src = linksWednesday[getRandomInt(0, linksWednesday.length)]
+                }
+
+                console.log(img.src)
+
+
+                post.className = "post task "
+                post.classList.add(colors[getRandomInt(0, colors.length)])
+                post.appendChild(img)
+                for (let i = 0; i < Kpr; i++)
+                {
+                    post.appendChild(GenerateText())
+                }
+                return post
+            }
+
+            for (let i = 0; i < K; i++)
+            {
+                document.querySelector("div.Text").appendChild(GeneratePost());
+            }
+        }
+        Task4();
+    </script>
+</body>
+
+</html>
